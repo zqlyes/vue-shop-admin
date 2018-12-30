@@ -40,7 +40,7 @@
               <i class="el-icon-menu"></i>
               <span>角色列表</span>
             </el-menu-item>
-            <el-menu-item index="2-2">
+            <el-menu-item index="/rights">
               <i class="el-icon-menu"></i>
               <span>权限列表</span>
             </el-menu-item>
@@ -57,19 +57,17 @@
 <script>
 export default {
   methods: {
-    logout() {
-      // console.log(this)
-      this.$confirm('您确定要退出本系统吗？', '温馨提示', {
-        type: 'warning'
-      })
-        .then(() => {
-          localStorage.removeItem('token')
-          this.$router.push('/login')
-          this.$message.success('退出成功')
+    async logout() {
+      try {
+        await this.$confirm('您确定要退出本系统吗？', '温馨提示', {
+          type: 'warning'
         })
-        .catch(() => {
-          this.$message.info('取消退出')
-        })
+        localStorage.removeItem('token')
+        this.$router.push('/login')
+        this.$message.success('退出成功')
+      } catch (error) {
+        this.$message.info('取消退出')
+      }
     }
   }
 }

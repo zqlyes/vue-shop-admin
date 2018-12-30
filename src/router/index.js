@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Users from '@/components/Users'
+import Rights from '@/components/Rights'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,10 @@ const router = new VueRouter({
         {
           path: '/users',
           component: Users
+        },
+        {
+          path: '/rights',
+          component: Rights
         }
       ]
     }
@@ -35,7 +40,6 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
-  console.log(to, from)
   let token = localStorage.getItem('token')
   if (token) {
     next()
